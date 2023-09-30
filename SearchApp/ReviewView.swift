@@ -35,6 +35,7 @@ struct ReviewView: View {
     @StateObject private var vm = ContentViewViewModel()
     @FocusState var isInputActive: Bool
     @Binding var isActive: Bool
+    @Binding var toMapView: Bool
 
     @State var titleText: String
 
@@ -44,6 +45,7 @@ struct ReviewView: View {
                 topView()
                 topTabbar()
                 reviewMenu()
+               
                 Spacer()
                 
                 ScrollView {
@@ -54,12 +56,19 @@ struct ReviewView: View {
                         }
                     }
                 }
+                NavigationLink(destination: MapView( titleText: "\(user.title)"), isActive: $toMapView) {
+                }
             }
 
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear() {
+            print("\(toMapView)")
+
+        }
 
     }
+    
     
     @ViewBuilder
     func topView() -> some View {
@@ -125,9 +134,18 @@ struct ReviewView: View {
         Image("Tabbar")
             .resizable()
             .scaledToFill()
-        Image("reviewImage")
-            .resizable()
-            .scaledToFit()
+//        Image("reviewImage")
+//            .resizable()
+//            .scaledToFit()
+        
+        Button(action: {
+            toMapView = true
+           
+        }) {
+            Image("reviewImage")
+                .resizable()
+                .scaledToFit()
+        }
         }
     
     @ViewBuilder

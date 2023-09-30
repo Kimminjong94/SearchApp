@@ -30,7 +30,7 @@ struct ContentView: View {
                     }
                     
                    
-                    NavigationLink(destination: ReviewView(user: UserReview(id: 0, profileImage: "", userName: "", date: "", title: "", image1: "", image2: ""), isActive: $toReviewView, titleText: "\(vm.nameInputText)"), isActive: $toReviewView) {
+                    NavigationLink(destination: ReviewView(user: UserReview(id: 0, profileImage: "", userName: "", date: "", title: "\(vm.nameInputText)", image1: "", image2: ""), isActive: $toReviewView, toMapView: $isShowingResult, titleText: "\(vm.nameInputText)"), isActive: $toReviewView) {
                         
                     }
 
@@ -83,7 +83,7 @@ struct ContentView: View {
                             Spacer()
                             Button("완료") {
                                 isInputActive = false
-                                if vm.nameInputText == "파랑새 정원" {
+                                if vm.nameInputText != "파랑새 정원" {
                                     self.toReviewView = true
                                    
                                     print("To Review View")
