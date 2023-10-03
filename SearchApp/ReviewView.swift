@@ -36,6 +36,7 @@ struct ReviewView: View {
     @FocusState var isInputActive: Bool
     @Binding var isActive: Bool
     @Binding var toMapView: Bool
+    @Binding var falseProperty: Bool
 
     @State var titleText: String
 
@@ -56,7 +57,7 @@ struct ReviewView: View {
                         }
                     }
                 }
-                NavigationLink(destination: MapView( titleText: "\(user.title)"), isActive: $toMapView) {
+                NavigationLink(destination: MapView( titleText: "\(user.title)", toMapDetailView: $falseProperty ), isActive: $toMapView) {
                 }
             }
 

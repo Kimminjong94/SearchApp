@@ -11,6 +11,7 @@ struct MapView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var titleText: String
     @FocusState var isInputActive: Bool
+    @Binding var toMapDetailView: Bool
 
     
     var body: some View {
@@ -21,11 +22,18 @@ struct MapView: View {
                 mapImage()
                 
                 infoView()
+                
+                NavigationLink(destination: MapDetailView(title: titleText), isActive: $toMapDetailView) {
+                    
+                }
             }
             .navigationBarBackButtonHidden(true)
             
                 
             
+        }
+        .onAppear() {
+            print("\(toMapDetailView)")
         }
     }
     
@@ -138,7 +146,8 @@ struct MapView: View {
                     }
                     
                     Button(action: {
-                        
+                        self.toMapDetailView = true
+                        print("\(toMapDetailView)")
                     }) {
                         Image("arrivedButton")
                             .resizable()
@@ -149,10 +158,13 @@ struct MapView: View {
                 }
             }
             
-            Image("mapViewPhoto")
-                .resizable()
-                .scaledToFit()
+            HStack {
+                Image("mapViewPhoto")
+                    .resizable()
+                    .scaledToFit()
                 .padding()
+                Spacer()
+            }
         }
         .padding()
     }
