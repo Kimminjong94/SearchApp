@@ -12,7 +12,7 @@ struct MapView: View {
     @State var titleText: String
     @FocusState var isInputActive: Bool
     @Binding var toMapDetailView: Bool
-
+    @Binding var isDismiss: Bool
     
     var body: some View {
         ScrollView {
@@ -23,7 +23,7 @@ struct MapView: View {
                 
                 infoView()
                 
-                NavigationLink(destination: MapDetailView(title: titleText), isActive: $toMapDetailView) {
+                NavigationLink(destination: MapDetailView(title: titleText, isDismiss: $isDismiss), isActive: $toMapDetailView) {
                     
                 }
             }
@@ -64,8 +64,8 @@ struct MapView: View {
                     }
                 }
             Button(action: {
-//                isActive = false
-                presentationMode.wrappedValue.dismiss()
+//                isDismiss = false
+//                presentationMode.wrappedValue.dismiss()
 
             }) {
                 
@@ -78,6 +78,8 @@ struct MapView: View {
             }
             
             Button(action: {
+                isDismiss = false
+                presentationMode.wrappedValue.dismiss()
             }) {
                 Image("logoXbutton")
                     .resizable()

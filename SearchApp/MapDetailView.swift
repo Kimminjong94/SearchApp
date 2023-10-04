@@ -11,7 +11,8 @@ struct MapDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var title: String
     @FocusState var isInputActive: Bool
-    
+    @Binding var isDismiss: Bool
+
     
     var body: some View {
         ScrollView {
@@ -61,10 +62,21 @@ struct MapDetailView: View {
                     
             
                 }
-                Image("logoXbutton")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 30, height: 40)
+                
+                Button(action: {
+                    isDismiss = false
+                    presentationMode.wrappedValue.dismiss()
+
+                }) {
+                    
+                    Image("logoXbutton")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30, height: 40)
+                    
+                    
+                }
+               
 
                 
             }
@@ -122,7 +134,6 @@ struct MapDetailView: View {
                 Image("mapViewPhoto")
                     .resizable()
                     .scaledToFit()
-                .padding()
                 Spacer()
             }
         }

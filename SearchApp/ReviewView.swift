@@ -37,6 +37,7 @@ struct ReviewView: View {
     @Binding var isActive: Bool
     @Binding var toMapView: Bool
     @Binding var falseProperty: Bool
+    @Binding var toWriteReviewView: Bool
 
     @State var titleText: String
 
@@ -57,7 +58,11 @@ struct ReviewView: View {
                         }
                     }
                 }
-                NavigationLink(destination: MapView( titleText: "\(user.title)", toMapDetailView: $falseProperty ), isActive: $toMapView) {
+                NavigationLink(destination: MapView( titleText: "\(user.title)", toMapDetailView: $falseProperty, isDismiss: $falseProperty ), isActive: $toMapView) {
+                }
+                
+                NavigationLink(destination: WriteReviewView(titleText: ""), isActive: $toWriteReviewView) {
+                    
                 }
             }
 
@@ -159,8 +164,7 @@ struct ReviewView: View {
             Spacer()
             
             Button(action: {
-                isActive = false
-                presentationMode.wrappedValue.dismiss()
+                toWriteReviewView = true
 
             }) {
                 

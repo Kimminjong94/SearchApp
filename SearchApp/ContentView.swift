@@ -30,7 +30,7 @@ struct ContentView: View {
                     }
                     
                    
-                    NavigationLink(destination: ReviewView(user: UserReview(id: 0, profileImage: "", userName: "", date: "", title: "\(vm.nameInputText)", image1: "", image2: ""), isActive: $toReviewView, toMapView: $isShowingResult, falseProperty: $falseTest, titleText: "\(vm.nameInputText)"), isActive: $toReviewView) {
+                    NavigationLink(destination: ReviewView(user: UserReview(id: 0, profileImage: "", userName: "", date: "", title: "\(vm.nameInputText)", image1: "", image2: ""), isActive: $toReviewView, toMapView: $isShowingResult, falseProperty: $falseTest, toWriteReviewView: $falseTest, titleText: "\(vm.nameInputText)"), isActive: $toReviewView) {
                         
                     }
 
