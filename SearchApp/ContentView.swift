@@ -16,7 +16,7 @@ struct ContentView: View {
     @State var stack = NavigationPath()
     @State private var isShowingResult = false
     @State var falseTest: Bool = false
-
+    @State var data: Data?
     
     var body: some View {
         NavigationStack {
@@ -30,7 +30,7 @@ struct ContentView: View {
                     }
                     
                    
-                    NavigationLink(destination: ReviewView(user: UserReview(id: 0, profileImage: "", userName: "", date: "", title: "\(vm.nameInputText)", image1: "", image2: ""), isActive: $toReviewView, toMapView: $isShowingResult, falseProperty: $falseTest, toWriteReviewView: $falseTest, titleText: "\(vm.nameInputText)"), isActive: $toReviewView) {
+                    NavigationLink(destination: ReviewView(user: UserReview(id: 0, profileImage: "", userName: "", date: "", title: "\(vm.nameInputText)", image1: "", image2: "", data: data), isActive: $toReviewView, toMapView: $isShowingResult, falseProperty: $falseTest, toWriteReviewView: $falseTest, data: $data, titleText: "\(vm.nameInputText)"), isActive: $toReviewView) {
                         
                     }
 

@@ -116,7 +116,7 @@ struct MapDetailView: View {
                     
                 }
                 
-                Text("강원 강현면 물치리 동해로 45번길")
+                Text("강원 강현면 물치리 동해로 45번길 8")
                     .fontWeight(.regular)
                     .font(.system(size: 12))
 
@@ -125,7 +125,7 @@ struct MapDetailView: View {
                     .foregroundColor(.gray)
                     .font(.system(size: 10))
                 
-                Text("☏ 010-0724-5633")
+                Text("☏ 010-0933-9005")
                     .font(.system(size: 12))
                 
             }

@@ -8,11 +8,16 @@ import PhotosUI
 import SwiftUI
 
 struct WriteReviewView: View {
+    
+    @Environment(\.presentationMode) var presentationMode
+    
+    let addReview = UserData()
+
     @State var titleText: String
     @FocusState var isInputActive: Bool
 
     @State var selectedImage: [PhotosPickerItem] = []
-    @State var data: Data?
+    @Binding var data: Data?
     
     var body: some View {
         ScrollView {
@@ -146,8 +151,10 @@ struct WriteReviewView: View {
                 Spacer()
                 Button(action: {
     //                isDismiss = false
-    //                presentationMode.wrappedValue.dismiss()
+                    presentationMode.wrappedValue.dismiss()
                     
+                    UserData.shared.userReview.append(UserReview(id: 4, profileImage: "profileImage", userName: "asdklfj", date: "7.14", title: "Test", image1: "", image2: "", data: self.data))
+          
                     
 
                 }) {

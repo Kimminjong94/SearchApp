@@ -15,18 +15,23 @@ struct UserReview: Identifiable {
     let title: String
     let image1: String
     let image2: String
+    let data: Data?
+}
 
-   
+class UserData {
+    
+    static let shared = UserData()
+
+    var userReview: [UserReview] = [
+        UserReview(id: 0, profileImage: "profileImage", userName: "그린이", date: "4.1 토 / 2번재 방문", title: "항상 또 오고 싶은 곳이에요~", image1: "", image2: "", data: nil),
+        UserReview(id: 1, profileImage: "profileImage", userName: "asdf", date: "7.13", title: "손님이 많이 없어서 외로울까 걱정했는데 사장 언니만으로 충분!", image1: "reviewImage1", image2: "reviewImage2", data: nil),
+        UserReview(id: 2, profileImage: "profileImage", userName: "asdf", date: "7.12", title: "safd", image1: "", image2: "", data: nil),
+        UserReview(id: 3, profileImage: "profileImage", userName: "afdsfsd", date: "7.14", title: "dfas", image1: "reviewImage2", image2: "", data: nil)
+    ]
 }
 
 struct ReviewView: View {
-    
-    let userReview: [UserReview] = [
-        UserReview(id: 0, profileImage: "profileImage", userName: "나무 인생", date: "7.11", title: "한적한 분위기 너무 좋아요! 또 오고 싶어요!", image1: "", image2: ""),
-        UserReview(id: 1, profileImage: "profileImage", userName: "asdf", date: "7.13", title: "손님이 많이 없어서 외로울까 걱정했는데 사장 언니만으로 충분!", image1: "reviewImage1", image2: "reviewImage2"),
-    UserReview(id: 2, profileImage: "profileImage", userName: "asdf", date: "7.12", title: "safd", image1: "", image2: ""),
-        UserReview(id: 3, profileImage: "profileImage", userName: "afdsfsd", date: "7.14", title: "dfas", image1: "reviewImage2", image2: "")
-    ]
+
     
     let user: UserReview
     
@@ -38,6 +43,7 @@ struct ReviewView: View {
     @Binding var toMapView: Bool
     @Binding var falseProperty: Bool
     @Binding var toWriteReviewView: Bool
+    @Binding var data: Data?
 
     @State var titleText: String
 
@@ -52,7 +58,7 @@ struct ReviewView: View {
                 
                 ScrollView {
                     VStack {
-                        ForEach(userReview) { item in
+                        ForEach(UserData.shared.userReview.reversed()) { item in
                             UserReviewCollectionView(user: item)
                             
                         }
@@ -61,18 +67,17 @@ struct ReviewView: View {
                 NavigationLink(destination: MapView( titleText: "\(user.title)", toMapDetailView: $falseProperty, isDismiss: $falseProperty ), isActive: $toMapView) {
                 }
                 
-                NavigationLink(destination: WriteReviewView(titleText: ""), isActive: $toWriteReviewView) {
+                NavigationLink(destination: WriteReviewView(titleText: "", data: $data), isActive: $toWriteReviewView) {
                     
                 }
             }
 
         }
         .navigationBarBackButtonHidden(true)
-        .onAppear() {
-            print("\(toMapView)")
-
+        .onDisappear() {
+            print("\(UserData.shared.userReview)")
+//            userReview.userReview.append(UserReview(id: 4, profileImage: "profileImage", userName: "asdfd", date: "7월 12일", title: "ㅁㄴㅇㄹ", image1: "", image2: "", data: self.data))
         }
-
     }
     
     
@@ -180,19 +185,12 @@ struct ReviewView: View {
 
         
     }
-    
-
-
-
 }
-
-
 
 struct UserReviewCollectionView: View {
     let user: UserReview
     @State var buttonTapped: Bool = false
     @State var disLikeButtonTapped: Bool = false
-
     
     var body: some View {
         
@@ -202,7 +200,7 @@ struct UserReviewCollectionView: View {
                         .resizable()
                         .frame(width: 40, height: 40)
                         .cornerRadius(20)
-                    
+  
                     Text(user.userName)
                         .font(.subheadline)
                         .fontWeight(.bold)
@@ -213,6 +211,7 @@ struct UserReviewCollectionView: View {
                     
                     Spacer()
                 }
+                
                 .padding(.horizontal, 20)
                 
                 
@@ -223,44 +222,81 @@ struct UserReviewCollectionView: View {
                 .padding(.horizontal, 20)
                 
                 HStack(spacing: 0) {
+           
+                    if user.data != nil {
+                        
+                        if let data = user.data, let uiImage = UIImage(data: data) {
+                            Button(action: {
+                                print("BUtton 1")
+
+                            }) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .cornerRadius(12)
+                                    .frame(height: 250)
+                            }
+                        }
+                        
+                        
+                    }
                     
                     if user.image1 == "" && user.image2 == "" {
                         
                     } else if user.image2 == "" {
-                        Image(user.image1)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .cornerRadius(12)
-                            .frame(maxWidth: .infinity)
+                        Button(action: {
+                            print("BUtton 2")
 
-                    } else {
-                        Image(user.image1)
-                            .resizable()
-                            .scaledToFit()
-                            .cornerRadius(12)
-                            .frame(maxHeight: .infinity)
+                        }) {
+                            Image(user.image1)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .cornerRadius(12)
+                                .frame(maxWidth: .infinity)
+
+                        }
                         
-                        Image(user.image2)
-                            .resizable()
-                            .scaledToFit()
-                            .cornerRadius(12)
-                            .frame(maxHeight: .infinity)
+                        
+                    } else {
+                        Button(action: {
+                            print("BUtton 3")
+
+                        }) {
+                            Image(user.image1)
+                                .resizable()
+                                .scaledToFit()
+                                .cornerRadius(12)
+                                .frame(maxHeight: .infinity)
+                        }
+                        
+                        Button(action: {
+                            print("BUtton 5")
+                        }) {
+                            Image(user.image2)
+                                .resizable()
+                                .scaledToFit()
+                                .cornerRadius(12)
+                                .frame(maxHeight: .infinity)
+                        }
+            
+                        
+                        
                     }
+                }
+                .onAppear() {
+                    
                 }
                 .padding(.horizontal, 20)
                
-                
-                
-                HStack(spacing: 10) {
+                HStack(spacing: 5) {
                     Button(action: {
                         self.buttonTapped.toggle()
 //                        presentationMode.wrappedValue.dismiss()
 
                     }) {
-                        Image(self.buttonTapped == true ? "likeButton" : "likeButton")
+                        Image(self.buttonTapped == true ? "enabledLike" : "disabledLike")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 15, height: 15)
+                            .frame(width: 17, height: 17)
                     }
                     
                     Button(action: {
@@ -269,10 +305,10 @@ struct UserReviewCollectionView: View {
 //                        presentationMode.wrappedValue.dismiss()
 
                     }) {
-                        Image(self.disLikeButtonTapped == true ? "disLikeTapped" : "disLikeButton")
+                        Image(self.disLikeButtonTapped == true ? "enabledDisLike" : "disAbledDisLike")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 15, height: 15)
+                            .frame(width: 17, height: 17)
 
                     }
                     
@@ -282,20 +318,18 @@ struct UserReviewCollectionView: View {
                 .padding()
                 
                 RoundedRectangle(cornerRadius: 20, style: .circular)
-                    .stroke(Color.gray)
+                    .stroke(Color("myGray"))
                     .frame(height: 1)
                     .frame(maxWidth: .infinity)
                     .cornerRadius(20)
+                    .padding(.horizontal)
+                
+
+                
+             
             }
+           
         }
+        
     
 }
-
-//
-//struct Review_Previews: PreviewProvider {
-//    static var previews: some View {
-//        @State var isActive = true
-//
-//        ReviewView(user: <#UserReview#>, isActive: $isActive, titleText: "파랑새 정원")
-//    }
-//}
