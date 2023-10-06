@@ -30,7 +30,7 @@ struct ContentView: View {
                     }
                     
                    
-                    NavigationLink(destination: ReviewView(user: UserReview(id: 0, profileImage: "", userName: "", date: "", title: "\(vm.nameInputText)", image1: "", image2: "", data: data), isActive: $toReviewView, toMapView: $isShowingResult, falseProperty: $falseTest, toWriteReviewView: $falseTest, data: $data, titleText: "\(vm.nameInputText)"), isActive: $toReviewView) {
+                    NavigationLink(destination: ReviewView(user: UserReview(id: 0, profileImage: "", userName: "", date: "", title: "\(vm.nameInputText)", image1: "", image2: "", data: data), isActive: $toReviewView, toMapView: $isShowingResult, falseProperty: $falseTest, toWriteReviewView: $falseTest, data: $data, toGreenView: $falseTest, titleText: "\(vm.nameInputText)"), isActive: $toReviewView) {
                         
                     }
 
@@ -83,7 +83,7 @@ struct ContentView: View {
                             Spacer()
                             Button("완료") {
                                 isInputActive = false
-                                if vm.nameInputText != "파랑새 정원" {
+                                if vm.nameInputText == "파랑새 정원" {
                                     self.toReviewView = true
                                    
                                     print("To Review View")
@@ -112,7 +112,7 @@ struct ContentView: View {
                 Button(action: {
 //                    self.isActive = true
                 }) {
-                    Image("mikeImage")
+                    Image("homeSearch")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30, height: 40)

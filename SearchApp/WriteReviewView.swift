@@ -18,7 +18,8 @@ struct WriteReviewView: View {
 
     @State var selectedImage: [PhotosPickerItem] = []
     @Binding var data: Data?
-    
+    @State private var buttonTapped: Bool = false
+
     var body: some View {
         ScrollView {
             VStack {
@@ -54,9 +55,10 @@ struct WriteReviewView: View {
                 .font(.system(size: 12))
             
             Button(action: {
-                
+                self.buttonTapped.toggle()
+
             }) {
-                Image("blankStar")
+                Image(self.buttonTapped == true ? "starImage" : "blankStar")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 200, height: 50)
@@ -104,15 +106,15 @@ struct WriteReviewView: View {
                     }
                 
             }
-            VStack {
+            VStack(alignment: .leading) {
                 
                 HStack() {
                     if let data = data, let uiImage = UIImage(data: data) {
                         Image(uiImage: uiImage)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 200, height: 150)
-                            .cornerRadius(15)
+                            .frame(width: 150, height: 150)
+                            .cornerRadius(20)
                             
                     }
                     Spacer()
@@ -151,11 +153,11 @@ struct WriteReviewView: View {
                 Spacer()
                 Button(action: {
     //                isDismiss = false
-                    presentationMode.wrappedValue.dismiss()
                     
-                    UserData.shared.userReview.append(UserReview(id: 4, profileImage: "profileImage", userName: "asdklfj", date: "7.14", title: "Test", image1: "", image2: "", data: self.data))
+                    UserData.shared.userReview.append(UserReview(id: 14, profileImage: "profileImage", userName: "서도경", date: "9.25 월 / 1번째 방문", title: "빛나는 바다. 많이 보고 싶었어요.", image1: "", image2: "", data: self.data))
           
-                    
+                    presentationMode.wrappedValue.dismiss()
+
 
                 }) {
                     

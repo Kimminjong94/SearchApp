@@ -18,6 +18,7 @@
 		585B8B0C2ACC5AE4009E1A34 /* MapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585B8B0B2ACC5AE4009E1A34 /* MapDetailView.swift */; };
 		58E098C52ACD053B0078E1C1 /* WriteReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E098C42ACD053B0078E1C1 /* WriteReviewView.swift */; };
 		58F3FC6E2AC147FE00EBFC9B /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F3FC6D2AC147FE00EBFC9B /* ReviewView.swift */; };
+		58F8512B2ACFFED6002CB4D5 /* GreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F8512A2ACFFED6002CB4D5 /* GreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		585B8B0B2ACC5AE4009E1A34 /* MapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailView.swift; sourceTree = "<group>"; };
 		58E098C42ACD053B0078E1C1 /* WriteReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteReviewView.swift; sourceTree = "<group>"; };
 		58F3FC6D2AC147FE00EBFC9B /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		58F8512A2ACFFED6002CB4D5 /* GreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				58E098C42ACD053B0078E1C1 /* WriteReviewView.swift */,
 				583B9A3A2AC7F94C00FB2536 /* MapView.swift */,
 				585B8B0B2ACC5AE4009E1A34 /* MapDetailView.swift */,
+				58F8512A2ACFFED6002CB4D5 /* GreenView.swift */,
 				582A70A72ABABDB1003FF02B /* ContentViewViewModel.swift */,
 				582A709D2ABAB6D6003FF02B /* Assets.xcassets */,
 				582A709F2ABAB6D6003FF02B /* Preview Content */,
@@ -164,6 +167,7 @@
 				582A709C2ABAB6D6003FF02B /* ContentView.swift in Sources */,
 				58419C4E2ABAEA5800CDD6CE /* ResultView.swift in Sources */,
 				582A709A2ABAB6D6003FF02B /* SearchAppApp.swift in Sources */,
+				58F8512B2ACFFED6002CB4D5 /* GreenView.swift in Sources */,
 				585B8B0C2ACC5AE4009E1A34 /* MapDetailView.swift in Sources */,
 				582A70A82ABABDB1003FF02B /* ContentViewViewModel.swift in Sources */,
 				58369DD32ACEE089005D4CF2 /* PhotoDetailView.swift in Sources */,
