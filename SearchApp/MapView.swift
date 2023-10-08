@@ -35,6 +35,9 @@ struct MapView: View {
         .onAppear() {
             print("\(toMapDetailView)")
         }
+        .onDisappear() {
+            toMapDetailView = false
+        }
     }
     
     @ViewBuilder

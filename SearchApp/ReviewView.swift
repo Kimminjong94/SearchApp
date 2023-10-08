@@ -79,6 +79,7 @@ struct ReviewView: View {
                     }
                 }
                 NavigationLink(destination: MapView( titleText: "\(user.title)", toMapDetailView: $falseProperty, isDismiss: $falseProperty ), isActive: $toMapView) {
+                    
                 }
                 
                 NavigationLink(destination: WriteReviewView(titleText: "", data: $data), isActive: $toWriteReviewView) {
@@ -96,7 +97,10 @@ struct ReviewView: View {
         }
         .navigationBarBackButtonHidden(true)
         .onDisappear() {
-            print("\(UserData.shared.userReview)")
+//            print("\(UserData.shared.userReview)")
+            print("toMapView = \(toMapView)")
+            print("toWriteReviewView = \(toWriteReviewView)")
+
 //            userReview.userReview.append(UserReview(id: 4, profileImage: "profileImage", userName: "asdfd", date: "7월 12일", title: "ㅁㄴㅇㄹ", image1: "", image2: "", data: self.data))
         }
     }
@@ -172,6 +176,7 @@ struct ReviewView: View {
         
         Button(action: {
             toMapView = true
+            toWriteReviewView = false
            
         }) {
             Image("reviewImage")
@@ -191,6 +196,7 @@ struct ReviewView: View {
             
             Button(action: {
                 toWriteReviewView = true
+                toMapView = false
 
             }) {
                 
@@ -236,16 +242,16 @@ struct UserReviewCollectionView: View {
                     
                     Spacer()
                 }
-                
-                .padding(.horizontal, 20)
-                
+                .padding(.horizontal, 23)
                 
                 HStack {
                     Text(user.title)
+                        .font((.system(size: 13)))
+
                     Spacer()
                 }
-                .padding(.horizontal, 20)
-                
+                .padding(.horizontal, 25)
+                Spacer()
                 HStack(spacing: 0) {
            
                     if user.data != nil {
@@ -304,6 +310,7 @@ struct UserReviewCollectionView: View {
                                 .cornerRadius(12)
                                 .frame(maxHeight: .infinity)
                         }
+
             
                         
                         
@@ -323,7 +330,7 @@ struct UserReviewCollectionView: View {
                         Image(self.buttonTapped == true ? "enabledLike" : "disabledLike")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 17, height: 17)
+                            .frame(width: 40, height: 40)
                     }
                     
                     Button(action: {
@@ -335,14 +342,15 @@ struct UserReviewCollectionView: View {
                         Image(self.disLikeButtonTapped == true ? "enabledDisLike" : "disAbledDisLike")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 17, height: 17)
+                            .frame(width: 40, height: 40)
 
                     }
+
                     
                     Spacer()
                     
                 }
-                .padding(.horizontal, 20)
+                .padding(.horizontal, 25)
                 .padding(.vertical, 5)
 
                 RoundedRectangle(cornerRadius: 20, style: .circular)
