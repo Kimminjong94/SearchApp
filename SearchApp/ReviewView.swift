@@ -264,7 +264,7 @@ struct UserReviewCollectionView: View {
                                 Image(uiImage: uiImage)
                                     .resizable()
                                     .cornerRadius(12)
-                                    .frame(height: 250)
+                                    .frame(height: 180)
                             }
                         }
                         

@@ -154,7 +154,7 @@ struct WriteReviewView: View {
                 Button(action: {
     //                isDismiss = false
                     
-                    UserData.shared.userReview.append(UserReview(id: 14, profileImage: "profileImage", userName: "서도경", date: "9.25 월 / 1번째 방문", title: "빛나는 바다. 많이 보고 싶었어요.", image1: "", image2: "", data: self.data))
+                    UserData.shared.userReview.append(UserReview(id: 14, profileImage: "profileImage", userName: "서도경", date: "10.13 금 / 1번째 방문", title: "빛나는 바다. 많이 보고 싶었어요.", image1: "", image2: "", data: self.data))
           
                     presentationMode.wrappedValue.dismiss()
 
