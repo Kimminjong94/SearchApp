@@ -123,7 +123,7 @@ struct WriteReviewView: View {
                 Spacer()
             
             
-            TextField("너무 좋아요", text: $titleText)
+            TextField("리뷰를 작성해 주세요.", text: $titleText)
                 .font(.system(size: 19))
                 .foregroundColor(.black)
                 .labelsHidden()
