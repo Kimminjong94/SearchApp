@@ -12,7 +12,7 @@ struct GreenView: View {
     @State var lastAmount: CGFloat = 1
     var body: some View {
         VStack {
-            Image("hoonImage2")
+            Image("hoonImage3")
                 .resizable()
                 .scaledToFill()
                 .scaleEffect(currentAmount + lastAmount)
